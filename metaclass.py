@@ -27,6 +27,8 @@ class TracingMeta(type):
 	print("name: {}".format(name))
 	print("bases: {}".format(bases))
 	print("namespace: {}".format(namespace))
+	num_entries = kwargs['num_entries']
+	namespace.update({chr(i): i for i in range(ord('a'), ord('a')+num_entries)})
         cls = super().__new__(mcs, name, bases, namespace)
 	print("cls: {}".format(cls))
         return cls
