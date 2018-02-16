@@ -47,6 +47,18 @@ class TracingMeta(type):
 	print("cls =", cls)
 	print()
 
+
+    def __call__(cls, *args, **kwargs):
+	print("TracingMeta.__call__(cls, *args, **kwargs)")
+	print(" cls = ", cls)
+	print( "args = ", args)
+	print(" kwargs = ", kwargs)
+	print(" About to call type.__call__()")
+	obj = super().__call__(*args, **kwargs)
+	print(" Returned from type.__call__()")
+	print("<-- obj=", obj)
+	print()
+	return obj
 class Widget(metaclass=TracingMeta):
   def hello(self):
     pass
