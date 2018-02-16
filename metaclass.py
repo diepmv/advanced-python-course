@@ -20,7 +20,7 @@ class TracingMeta(type):
         print("keyword arguments: {}".format(kwargs))
         namespace = super().__prepare__(name, bases)
         return namespace
-
+    @classmethod
     def __new__(mcs, name, bases, namespace, **kwargs):
         print("print from new")
 	print("mcs: {}".format(mcs))
@@ -42,6 +42,10 @@ class TracingMeta(type):
 	print("keyword argument: {}".format(kwarg))
 	super().__init__(names, bases, namespace)
 
+    def metamethod(cls):
+	print("TracingMeta.metamethod(cls)")
+	print("cls =", cls)
+	print()
 
 class Widget(metaclass=TracingMeta):
   def hello(self):
